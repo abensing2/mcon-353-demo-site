@@ -1,4 +1,5 @@
 import logo from './logo.svg';
+import Accordion from '@mui/material/Accordion';
 import { Button } from "@mui/material";
 import './App.css';
 
@@ -10,6 +11,7 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
+        <Accordion>Click to learn more!</Accordion>
         <a
           className="App-link"
           href="https://reactjs.org"
