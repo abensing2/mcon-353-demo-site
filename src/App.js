@@ -1,29 +1,22 @@
+import * as React from 'react';
 import logo from './logo.svg';
+import picture from './picture.jpg';
+import Box from '@mui/material/Box';
+import Avatar from '@mui/material/Avatar';
+import MenuIcon from '@mui/icons-material/Menu';
+import HomeIcon from '@mui/icons-material/HomeOutlined';
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
 import Accordion from '@mui/material/Accordion';
-import { Button } from "@mui/material";
+import { AccordionDetails, AccordionSummary, AppBar, Button, IconButton, Toolbar, Typography } from "@mui/material";
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import './App.css';
+import {Home} from "./components/home/home";
+import {Todo} from "./components/todo/todo";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <Accordion>Click to learn more!</Accordion>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <Button variant="contained">Click me</Button>
-      </header>
-    </div>
-  );
+//return <Home />
+return <Todo />
 }
 
 export default App;
