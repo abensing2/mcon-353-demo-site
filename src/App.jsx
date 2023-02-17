@@ -13,10 +13,22 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import './App.css';
 import {Home} from "./components/home/home";
 import {Todo} from "./components/todo/todo";
-
+import {HashRouter, Routes, Route} from "react-router-dom";
+import {Header} from "./components/header/header";
 function App() {
-//return <Home />
-return <Todo />
+return (
+    <HashRouter>
+    <Header/>
+    <Routes>
+        {/*localhost:3000/#*/}
+        <Route path="/" element= {<Home/>}/>
+        {/*localhost:3000/#/todo*/}
+        <Route path="/todo" element= {<Todo/>}/>
+    </Routes>
+
+    </HashRouter>
+)
+
 }
 
 export default App;
