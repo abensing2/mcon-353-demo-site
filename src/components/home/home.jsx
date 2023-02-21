@@ -13,16 +13,17 @@ import './home.css';
 
 export const Home = () => {
   return (
+
     <body>
     <div className="App">
-    <Alert severity="info"
+    {/* <Alert severity="info"
     onClose={() => {}}>
     <AlertTitle>Home Page</AlertTitle>
    Welcome to my website- <strong>check it out!</strong>
-    </Alert>      
+    </Alert>       */}
     <header>
-        <Box sx={{ flexGrow:1}}>
-          <AppBar position ="static" color="secondary">
+         <Box sx={{ flexGrow:1}}>
+         {/* <AppBar position ="static" color="secondary">
             <Toolbar>
             <IconButton
             size ="medium"
@@ -51,7 +52,7 @@ export const Home = () => {
         </Box>
         </Toolbar>
         </AppBar> 
-      
+       */}
         <h2>Dena Bensinger's Home Page:</h2>
         <p class="p">Hello! My name is Dena Bensinger. I am currently pursuing a BS in Computer Science at Touro University.
         This semster is my last semester before I finish my degree. I am looking forward to strengthening my skills and becoming a programmer. </p>
