@@ -1,16 +1,30 @@
-import { Todo } from "../components/todo/todo";
+import { cloneDeep } from "lodash";
 
-const TodoActions = {
+export const TodoActions = {
   ADD: "ADD",
+  TOGGLE: "TOGGLE",
+  DELETE: "DELETE",
 };
-const todoReducer = (state, action) => {
+export const todoReducer = (state, action) => {
   switch (action.type) {
     case TodoActions.ADD: {
       return { todos: [...state.todos, action.todo] };
     }
+    case TodoActions.TOGGLE: {
+      let newTodos = cloneDeep(state.todos);
+      const updatedTodo = newTodos.find((x) => x.title === action.todo.title);
+      updatedTodo.isComplete = !updatedTodo.isComplete;
+      return {
+        todos: newTodos,
+      };
+    }
+    case TodoActions.DELETE: {
+      let newTodos = cloneDeep(state.todos);
+      const updatedTodo = newTodos.find((x) => x.title === action.todo.title);
+      newTodos.splice(newTodos.indexOf(updatedTodo));
+      return {
+        todos: newTodos,
+      };
+    }
   }
-};
-const addAction = {
-  type: TodoActions.ADD,
-  todo: { title: "random", isComplete: false },
 };
