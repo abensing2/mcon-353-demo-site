@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
+import { useInterval } from "../../hooks/useInterval";
 
 export const Chat = () => {
   const [chats, setChats] = useState([]);
   const [currentChat, setCurrentChat] = useState(null);
   const [messages, setMessages] = useState([]);
+  const [inputMessages, setInputMessages] = useState("");
 
   function getChats() {
     fetch("https://z36h06gqg7.execute-api.us-east-1.amazonaws.com/chats")
@@ -34,9 +36,45 @@ export const Chat = () => {
       });
   }
 
+  function postMessage() {
+    if (currentChat != null) {
+      const message = {
+        chatId: currentChat.id,
+        username: "class 2023",
+
+        text: inputMessages,
+      };
+      fetch("https://z36h06gqg7.execute-api.us-east-1.amazonaws.com/messages", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(message),
+      });
+      setInputMessages("");
+    } else {
+      console.log("cannot post a message because the currentChat is null");
+    }
+  }
+  function onMessageInput(event) {
+    console.log(event);
+    setInputMessages(event.target.value);
+  }
+
   useEffect(() => {
     getChats();
   }, []);
+
+  useInterval(
+    (params) => {
+      const chatId = params[0];
+      if (chatId) {
+        getMessages(chatId);
+      }
+    },
+    1000,
+    currentChat && currentChat.id
+  );
 
   return (
     <div>
@@ -52,11 +90,22 @@ export const Chat = () => {
         </div>
         <div>
           <h2>{currentChat && currentChat.name} Messages</h2>
-          {messages.map((message) => (
+          {/* {messages.map((message) => (
             <div key={message.id}>
               {message.username}: {message.text}
             </div>
-          ))}
+          ))} */}
+          <div>
+            <input onInput={onMessageInput} value={inputMessages} />{" "}
+            <button onClick={() => postMessage()}>POST</button>
+          </div>
+          <div>
+            {messages.map((message) => (
+              <div key={message.id}>
+                {message.username}: {message.text}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
